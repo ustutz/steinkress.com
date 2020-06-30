@@ -1,0 +1,10 @@
+*.png
+*.jpg
+*.gif
+*.db
+*.ttf
+*.woff
+*.woff2
+*.eot
+Parason Software -doc
+.DS_Store
