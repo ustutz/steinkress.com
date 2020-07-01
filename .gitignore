@@ -1,6 +1,7 @@
 *.png
 *.jpg
 *.gif
+*.ico
 *.db
 *.ttf
 *.woff
