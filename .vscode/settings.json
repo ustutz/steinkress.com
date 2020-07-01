@@ -1,11 +1,12 @@
 {
 	"liveSassCompile.settings.formats":[
 		{
-			"format": "expanded",
+			"format": "compressed",
 			"extensionName": ".css",
 			"savePath": "/dist/css"
 		}
 	],
 	"liveServer.settings.root": "/dist/",
-	"liveServer.settings.AdvanceCustomBrowserCmdLine": "C:/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe"
+	"liveServer.settings.AdvanceCustomBrowserCmdLine": "C:/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe",
+	"editor.tabSize": 2
 }
