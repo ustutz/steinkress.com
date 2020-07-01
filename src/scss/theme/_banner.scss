@@ -2,7 +2,7 @@
 	============================================================================================ */
 .hero-banner{
   position: relative;
-  background: #22195b;
+  background: $dark-blue;
   background-size: cover;
   padding: 90px 0 60px 0;
   // height: 400px;
@@ -17,7 +17,7 @@
   }
 
   @media(min-width: 1200px){
-    padding: 265px 0 275px 0;    
+    padding: 265px 0 275px 0;
   }
 
   &__img{
