@@ -1,3 +1,6 @@
+.contact-error-box {
+	color: crimson;
+}
 /*=================== contact banner start ====================*/
 .contact-banner{
   position: relative;
@@ -117,8 +120,15 @@
     &::placeholder{
       font-size: 14px;
       color: #999999;
-    }
+		}
+		
   }
+	.form-error{
+		border-color: crimson;
+    &:focus{
+			border-color: transparent;
+		}
+	}
 
   .different-control{
     height: 100% !important;

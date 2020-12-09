@@ -1,0 +1,8 @@
+-cp src
+-D analyzer-optimize
+-D js-es=6
+# -D dump=pretty
+-debug
+-dce full
+-main mailscript.MailscriptMain
+--js dist/js/mail-script.js

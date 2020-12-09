@@ -8,5 +8,8 @@
 	],
 	"liveServer.settings.root": "/dist/",
 	"liveServer.settings.AdvanceCustomBrowserCmdLine": "C:/Program Files (x86)/BraveSoftware/Brave-Browser/Application/brave.exe",
-	"editor.tabSize": 2
+	"editor.tabSize": 2,
+	"gitlens.codeLens.enabled": false,
+	"phpserver.phpPath":	"D:/Programs/Coding/xampp/php/php.exe",
+	"phpserver.relativePath":	"./dist"
 }
