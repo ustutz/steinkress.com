@@ -38,15 +38,6 @@ class MailscriptMain {
 			if( !checkbox.checked ) checkbox.classList.add( "checkbox-red" );
 				
 			if( !isFieldEmpty && checkbox.checked ) {
-				// final searchParams = new URLSearchParams();
-				// searchParams.append( "name", fields[0].value );
-				// searchParams.append( "email", fields[1].value );
-				// searchParams.append( "subject", fields[2].value );
-				// searchParams.append( "message", messageField.value );
-				
-				// final queryString = untyped searchParams.toString();
-				// trace( queryString );
-
 				final formData = untyped new FormData( document.forms.contact );
 
 				final submitText = submit.innerHTML;
