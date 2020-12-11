@@ -117,7 +117,7 @@
 					</div>
 				</div>
 				<div class="col-md-8 col-lg-9">
-					<form class="form-contact contact_form" action="" method="post" id="contactForm" novalidate="novalidate">
+					<form name ="contact" class="form-contact contact_form" action="" method="post" id="contactForm" novalidate="novalidate">
 						<div class="row">
 							<div class="col-lg-5">
 								<div class="form-group">
@@ -136,10 +136,16 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group text-center text-md-right mt-3">
-							<button id="submit-btn" type="submit" class="button button-contactForm">Nachricht senden</button>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="checkbox"><input id="checkbox" type="checkbox" name="privacy" value="valueprivacy">Ich habe die <a href="dataprotection.html" target="_blank">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen dauerhaft gespeichert werden.</div>
+								<div class="form-group text-center text-md-right mt-3">
+									<button id="submit-btn" type="submit" class="button button-contactForm">Nachricht senden</button>
+								</div>
+							</div>
 						</div>
-					</form>
+					</div>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -162,7 +168,29 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Alle 
 		</div>
 	</footer>
 	<!-- ================ End footer Area ================= -->
+	
+	
+	
+	<!-- ================== Start Modal =================== -->
+	<div class="modal fade" id="responseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 id="response_headline" class="modal-title" id="exampleModalLabel" data-success="Versand erfolgreich" data-failure="Fehler beim Versand"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div id="response_content" class="modal-body" data-success="Vielen Dank für die Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden." data-failure="Bitte versuchen Sie es später noch einmal oder kontaktieren Sie uns per Telefon oder E-Mail direkt an <a href='mailto:info@steinkress.com'>info@steinkress.com</a>."></div>
+				<div class="modal-footer">
+					<button id="close_modal" type="button" class="btn btn-primary">Schliessen</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- =================== End Modal ==================== -->
 
+	
 	<script src="vendors/jquery/jquery-3.2.1.min.js"></script>
 	<script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
 	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>

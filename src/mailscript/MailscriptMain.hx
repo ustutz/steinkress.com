@@ -1,8 +1,9 @@
 package mailscript;
 
+import js.html.FormData;
+import js.jquery.JQuery;
 import js.html.XMLHttpRequest;
 import js.html.TextAreaElement;
-import js.html.FormData;
 import js.html.URLSearchParams;
 import js.html.InputElement;
 import js.html.Event;
@@ -17,33 +18,61 @@ class MailscriptMain {
 		final submit = document.getElementById( 'submit-btn' );
 	
 		final fields = ['name','email', 'subject'].map( id -> cast( document.getElementById( id ), InputElement ));
-		final messageField = cast( document.getElementById( "message" ), TextAreaElement );
-
 		for( field in fields ) field.addEventListener( 'blur', ( e:Event ) -> {
 			final inputElement = cast( e.target, InputElement );
 			markIfEmpty( inputElement );
 		});
 
+		final messageField = cast( document.getElementById( "message" ), TextAreaElement );
+		final checkbox = cast( document.getElementById( "checkbox"), InputElement );
+		checkbox.addEventListener( 'click', ( e:Event ) -> if( checkbox.checked ) checkbox.classList.remove( "checkbox-red" ));
+
+		final closeModal = document.getElementById( "close_modal" );
+		closeModal.addEventListener( 'click', ( e:Event ) -> untyped new JQuery( "#responseModal" ).modal('hide'));
+
 		form.addEventListener( 'submit', ( e:Event ) -> {
 			e.preventDefault();
-			final isError = fields.fold(( field, error ) -> field.value == "" ? true : error, false );
-			if( isError ) {
-				for( field in fields ) markIfEmpty( field );
-			} else {
-				final searchParams = new URLSearchParams();
-				searchParams.append( "name", fields[0].value );
-				searchParams.append( "email", fields[1].value );
-				searchParams.append( "subject", fields[2].value );
-				searchParams.append( "message", messageField.value );
+			final isFieldEmpty = fields.fold(( field, error ) -> field.value == "" ? true : error, false );
+			
+			if( isFieldEmpty ) for( field in fields ) markIfEmpty( field );
+			if( !checkbox.checked ) checkbox.classList.add( "checkbox-red" );
 				
-				final queryString = untyped searchParams.toString();
+			if( !isFieldEmpty && checkbox.checked ) {
+				// final searchParams = new URLSearchParams();
+				// searchParams.append( "name", fields[0].value );
+				// searchParams.append( "email", fields[1].value );
+				// searchParams.append( "subject", fields[2].value );
+				// searchParams.append( "message", messageField.value );
+				
+				// final queryString = untyped searchParams.toString();
 				// trace( queryString );
 
+				final formData = untyped new FormData( document.forms.contact );
+
+				final submitText = submit.innerHTML;
+
 				final xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = ( e:Event ) -> {
+					if( xhr.readyState == 4 ) {
+						submit.innerHTML = submitText;
+						final headlineElement = document.getElementById( "response_headline" );
+						final contentElement = document.getElementById( "response_content" );
+						untyped new JQuery( "#responseModal" ).modal('show');
+						if( xhr.status == 200 && xhr.response != "error" ) {
+							headlineElement.innerHTML = headlineElement.dataset.success;
+							contentElement.innerHTML = contentElement.dataset.success;
+						} else {
+							headlineElement.innerHTML = headlineElement.dataset.failure;
+							contentElement.innerHTML = contentElement.dataset.failure;
+						}
+					}
+				}
 				xhr.open( "POST", "./sendit.php" );
-				xhr.send( queryString );
+				xhr.send( formData );
+				submit.innerHTML = "Sending...";
 
 			}
+
 		});
 
 	}

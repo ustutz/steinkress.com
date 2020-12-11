@@ -11,5 +11,5 @@
 	"editor.tabSize": 2,
 	"gitlens.codeLens.enabled": false,
 	"phpserver.phpPath":	"D:/Programs/Coding/xampp/php/php.exe",
-	"phpserver.relativePath":	"./dist"
+	"phpserver.relativePath":	"."
 }

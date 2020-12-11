@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Test</title>
+
+</head>
+<body>
+<form name="person">
+  <input name="name" value="John">
+  <input name="surname" value="Smith">
+</form>
+
+<script>
+  // pre-fill FormData from the form
+  let formData = new FormData(document.forms.person);
+
+  // add one more field
+  formData.append("middle", "Lee");
+
+  // send it out
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "./sendit.php");
+  xhr.send(formData);
+
+  xhr.onload = () => alert(xhr.response);
+</script>
+</body>
+</html>

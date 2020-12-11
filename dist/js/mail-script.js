@@ -267,7 +267,6 @@ class mailscript_MailscriptMain {
 			result[i] = js_Boot.__cast(window.document.getElementById(_this[i]) , HTMLInputElement);
 		}
 		let fields = result;
-		let messageField = js_Boot.__cast(window.document.getElementById("message") , HTMLTextAreaElement);
 		let _g2 = 0;
 		while(_g2 < fields.length) {
 			let field = fields[_g2];
@@ -277,32 +276,59 @@ class mailscript_MailscriptMain {
 				mailscript_MailscriptMain.markIfEmpty(inputElement);
 			});
 		}
+		let messageField = js_Boot.__cast(window.document.getElementById("message") , HTMLTextAreaElement);
+		let checkbox = js_Boot.__cast(window.document.getElementById("checkbox") , HTMLInputElement);
+		checkbox.addEventListener("click",function(e) {
+			if(checkbox.checked) {
+				checkbox.classList.remove("checkbox-red");
+			}
+		});
+		let closeModal = window.document.getElementById("close_modal");
+		closeModal.addEventListener("click",function(e) {
+			return $("#responseModal").modal("hide");
+		});
 		form.addEventListener("submit",function(e) {
 			e.preventDefault();
-			let isError = Lambda.fold(fields,function(field,error) {
+			let isFieldEmpty = Lambda.fold(fields,function(field,error) {
 				if(field.value == "") {
 					return true;
 				} else {
 					return error;
 				}
 			},false);
-			if(isError) {
+			if(isFieldEmpty) {
 				let _g = 0;
 				while(_g < fields.length) {
 					let field = fields[_g];
 					++_g;
 					mailscript_MailscriptMain.markIfEmpty(field);
 				}
-			} else {
-				let searchParams = new URLSearchParams();
-				searchParams.append("name",fields[0].value);
-				searchParams.append("email",fields[1].value);
-				searchParams.append("subject",fields[2].value);
-				searchParams.append("message",messageField.value);
-				let queryString = searchParams.toString();
+			}
+			if(!checkbox.checked) {
+				checkbox.classList.add("checkbox-red");
+			}
+			if(!isFieldEmpty && checkbox.checked) {
+				let formData = new FormData(window.document.forms.contact);
+				let submitText = submit.innerHTML;
 				let xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(e) {
+					if(xhr.readyState == 4) {
+						submit.innerHTML = submitText;
+						let headlineElement = window.document.getElementById("response_headline");
+						let contentElement = window.document.getElementById("response_content");
+						$("#responseModal").modal("show");
+						if(xhr.status == 200 && xhr.response != "error") {
+							headlineElement.innerHTML = headlineElement.dataset.success;
+							contentElement.innerHTML = contentElement.dataset.success;
+						} else {
+							headlineElement.innerHTML = headlineElement.dataset.failure;
+							contentElement.innerHTML = contentElement.dataset.failure;
+						}
+					}
+				};
 				xhr.open("POST","./sendit.php");
-				xhr.send(queryString);
+				xhr.send(formData);
+				submit.innerHTML = "Sending...";
 			}
 		});
 	}

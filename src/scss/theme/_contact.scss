@@ -133,6 +133,15 @@
   .different-control{
     height: 100% !important;
   }
+	.checkbox {
+		input{
+			margin-right: 6px;
+		}
+
+		.checkbox-red {
+			outline: 1px solid red;
+		}
+	}
 
   // button{
   //   border: 0;
