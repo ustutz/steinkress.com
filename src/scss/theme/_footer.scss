@@ -1,8 +1,8 @@
 /* footer style start
 	============================================================================================ */
 .footer-area {
-	padding: 20px 0px 60px;
-	background: #0e1424;
+	padding: 20px 0px 40px;
+	background: #2d74b2;
 	@media (max-width: 991px) {
 		// background: $title-color;
 		padding: 60px 0px;
@@ -93,15 +93,16 @@
 		}
 	}
 	.footer-bottom {
-		margin-top: 70px;
+		margin-top: 20px;
 		@media (max-width: 991px) {
 			margin-top: 20px;
 		}
 		p {
-			color: $link-color;
+			// color: $link-color;
+			color: #c2d7ee;
 
 			a{
-				color: $white;
+				color: white;
 			}
 		}
 		// span {
