@@ -13,7 +13,23 @@
 		margin-bottom: 20px;
 	}
 }
-
 .dot-list {
 	list-style-type: square;
+}
+.top-button {
+	position: fixed;
+	right: 30px;
+	bottom: -60px;
+	transition: bottom 0.5s;
+	background: none;
+	border: none;
+	outline: none;
+	color: $dark-blue;
+	font-size: 40px;
+	padding: 4px 6px 0px 6px;
+	border-radius: 10px;
+	background: white;
+}
+.button-in {
+	bottom: 20px;
 }
