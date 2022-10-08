@@ -1,2 +1,2 @@
-.list{margin-bottom:30px}.ul-list{list-style-type:square}.ul-list>li{margin-left:20px;border-top:4px solid white}.ul-list>.last{border-bottom:4px solid white;margin-bottom:20px}.dot-list{list-style-type:square}#top_button{background:none;border:0}
+.list{margin-bottom:30px}.ul-list{list-style-type:square}.ul-list>li{margin-left:20px;border-top:4px solid white}.ul-list>.last{border-bottom:4px solid white;margin-bottom:20px}.dot-list{list-style-type:square}.top-button{position:fixed;right:30px;bottom:-60px;-webkit-transition:bottom 0.5s;transition:bottom 0.5s;background:none;border:none;outline:none;color:#3c5e8b;font-size:40px;padding:4px 6px 0px 6px;border-radius:10px;background:white}.button-in{bottom:20px}
 /*# sourceMappingURL=custom.css.map */
